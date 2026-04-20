@@ -4,269 +4,203 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>李馨芮 | 主页</title>
+
   <style>
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
     body {
-      font-family: "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      font-family: "PingFang SC", "Microsoft YaHei", Arial;
       color: white;
-      background:
-        radial-gradient(circle at top left, rgba(255, 0, 153, 0.45), transparent 35%),
-        radial-gradient(circle at top right, rgba(0, 204, 255, 0.4), transparent 35%),
-        radial-gradient(circle at bottom center, rgba(123, 97, 255, 0.45), transparent 40%),
-        linear-gradient(135deg, #0f1020, #1b1035, #0a1a2f);
-      min-height: 100vh;
-      overflow-x: hidden;
+      background: #000;
     }
 
-    .page {
-      width: 100%;
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 40px 24px 80px;
-    }
-
-    .hero {
+    /* ===== 封面 ===== */
+    .cover {
+      height: 100vh;
+      background: url("photo1.jpg") center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
-      padding: 60px 20px 40px;
+      position: relative;
     }
 
-    .hero h1 {
-      font-size: 72px;
-      line-height: 1.05;
-      margin-bottom: 18px;
-      letter-spacing: 2px;
-      text-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+    .cover::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
     }
 
-    .hero p {
+    .cover-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .cover h1 {
+      font-size: 80px;
+      margin-bottom: 20px;
+      text-shadow: 0 10px 40px rgba(0,0,0,0.8);
+    }
+
+    .cover p {
       font-size: 22px;
-      color: rgba(255, 255, 255, 0.88);
       max-width: 800px;
-      margin: 0 auto 26px;
-      line-height: 1.7;
+      line-height: 1.8;
     }
 
-    .tag {
-      display: inline-block;
-      padding: 12px 22px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      font-size: 16px;
-      color: #fff;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    /* ===== 向下箭头 ===== */
+    .scroll {
+      position: absolute;
+      bottom: 30px;
+      font-size: 30px;
+      animation: bounce 1.5s infinite;
     }
 
-    .intro-card {
-      margin: 30px auto 50px;
-      max-width: 980px;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(14px);
-      border-radius: 28px;
-      padding: 30px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
-      text-align: center;
+    @keyframes bounce {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(10px); }
     }
 
-    .intro-card h2 {
-      font-size: 32px;
-      margin-bottom: 14px;
+    /* ===== 主体渐变背景 ===== */
+    .main {
+      background:
+        radial-gradient(circle at top left, rgba(255,0,153,0.4), transparent 40%),
+        radial-gradient(circle at bottom right, rgba(0,204,255,0.3), transparent 40%),
+        linear-gradient(135deg, #0f1020, #1b1035, #0a1a2f);
+      padding: 60px 30px;
     }
 
-    .intro-card p {
-      font-size: 18px;
-      line-height: 1.9;
-      color: rgba(255,255,255,0.9);
-    }
-
-    .gallery-title {
-      text-align: center;
-      font-size: 34px;
-      margin: 30px 0 24px;
-      letter-spacing: 1px;
-    }
-
+    /* ===== 照片墙 ===== */
     .gallery {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-    }
-
-    .photo-card {
-      position: relative;
-      overflow: hidden;
-      border-radius: 24px;
-      min-height: 420px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.1);
-      box-shadow: 0 18px 50px rgba(0,0,0,0.28);
-    }
-
-    .photo-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.5s ease;
-    }
-
-    .photo-card:hover img {
-      transform: scale(1.06);
-    }
-
-    .photo-text {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      padding: 22px;
-      background: linear-gradient(to top, rgba(0,0,0,0.72), rgba(0,0,0,0.08));
-    }
-
-    .photo-text h3 {
-      font-size: 24px;
-      margin-bottom: 8px;
-    }
-
-    .photo-text p {
-      font-size: 15px;
-      line-height: 1.7;
-      color: rgba(255,255,255,0.92);
-    }
-
-    .quote-section {
-      margin-top: 60px;
-      text-align: center;
-      padding: 36px 24px;
-      border-radius: 28px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.12);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.22);
-    }
-
-    .quote-section h2 {
-      font-size: 30px;
-      margin-bottom: 16px;
-    }
-
-    .quote-section p {
-      font-size: 20px;
-      line-height: 1.9;
-      color: rgba(255,255,255,0.9);
-      max-width: 900px;
+      gap: 20px;
+      max-width: 1200px;
       margin: 0 auto;
     }
 
-    @media (max-width: 1000px) {
-      .gallery {
-        grid-template-columns: repeat(2, 1fr);
-      }
+    .card {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      height: 420px;
+    }
 
-      .hero h1 {
-        font-size: 56px;
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 0.4s;
+    }
+
+    .card:hover img {
+      transform: scale(1.1);
+    }
+
+    .text {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding: 20px;
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    }
+
+    .text h3 {
+      font-size: 22px;
+      margin-bottom: 6px;
+    }
+
+    .text p {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    @media(max-width:900px){
+      .gallery{
+        grid-template-columns:1fr 1fr;
       }
     }
 
-    @media (max-width: 680px) {
-      .gallery {
-        grid-template-columns: 1fr;
+    @media(max-width:600px){
+      .gallery{
+        grid-template-columns:1fr;
       }
-
-      .hero h1 {
-        font-size: 42px;
-      }
-
-      .hero p {
-        font-size: 18px;
-      }
-
-      .photo-card {
-        min-height: 360px;
+      .cover h1{
+        font-size:50px;
       }
     }
+
   </style>
 </head>
+
 <body>
-  <div class="page">
-    <section class="hero">
+
+  <!-- ===== 封面 ===== -->
+  <section class="cover">
+    <div class="cover-content">
       <h1>李馨芮</h1>
       <p>
-        光、色彩、情绪、镜头感，全部都在这里。
-        这是一个属于李馨芮的视觉主页，记录她闪闪发光的瞬间。
+        老天爷炫技作品 · 人间颜值外挂 · 氛围感核武器 ·  
+        看一眼失眠三天 · 再看一眼开始幻想人生
       </p>
-      <div class="tag">Cool / Bright / Bold / Unforgettable</div>
-    </section>
-
-    <section class="intro-card">
-      <h2>关于她</h2>
-      <p>
-        她有自己的节奏，也有自己的光。<br>
-        她可以安静，也可以耀眼。<br>
-        她站在那里，就像一张已经完成构图的照片，干净、锋利、很有记忆点。
-      </p>
-    </section>
-
-    <h2 class="gallery-title">酷炸照片墙</h2>
-
-    <section class="gallery">
-
-  <div class="photo-card">
-    <img src="photo1.jpg" alt="">
-    <div class="photo-text">
-      <h3>都市魅力代言人</h3>
-      <p>情场不败传说 · 少女之友 · 传说中的女人</p>
     </div>
-  </div>
+    <div class="scroll">↓</div>
+  </section>
 
-  <div class="photo-card">
-    <img src="photo2.jpg" alt="">
-    <div class="photo-text">
-      <h3>魅力发射器</h3>
-      <p>全场最耀眼的存在 · 行走的氛围本身</p>
+  <!-- ===== 主体 ===== -->
+  <section class="main">
+
+    <div class="gallery">
+
+      <div class="card">
+        <img src="photo1.jpg">
+        <div class="text">
+          <h3>老天爷亲自代言</h3>
+          <p>都市魅力核弹头 · 屌丝梦境循环播放素材</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="photo2.jpg">
+        <div class="text">
+          <h3>心动暴击制造机</h3>
+          <p>看一眼脑子宕机 · 再看一眼直接恋爱脑</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="photo3.JPG">
+        <div class="text">
+          <h3>午夜传说本体</h3>
+          <p>社交场神话 · 出现一次就能吹半年</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="photo4.jpg">
+        <div class="text">
+          <h3>芳心收割机</h3>
+          <p>不是她会撩，是她呼吸都在撩</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="photo5.jpg">
+        <div class="text">
+          <h3>不讲理美貌</h3>
+          <p>颜值外挂开启 · 普通人直接退赛</p>
+        </div>
+      </div>
+
     </div>
-  </div>
 
-  <div class="photo-card">
-    <img src="photo3.jpg" alt="">
-    <div class="photo-text">
-      <h3>午夜统治者</h3>
-      <p>社交场之神 · 心动信号发射塔</p>
-    </div>
-  </div>
+  </section>
 
-  <div class="photo-card">
-    <img src="photo4.jpg" alt="">
-    <div class="photo-text">
-      <h3>浪漫女王</h3>
-      <p>芳心掠夺者 · 快乐制造机</p>
-    </div>
-  </div>
-
-  <div class="photo-card">
-    <img src="photo5.jpg" alt="">
-    <div class="photo-text">
-      <h3>传说级美女</h3>
-      <p>颜值天花板 · 潇洒代名词</p>
-    </div>
-  </div>
-
-</section>
-  
-    <section class="quote-section">
-      <h2>写给李馨芮</h2>
-      <p>
-        有些人不是出现在照片里才会发光，<br>
-        而是照片因为拍到了她，才变得更好看。
-      </p>
-    </section>
-  </div>
 </body>
 </html>
