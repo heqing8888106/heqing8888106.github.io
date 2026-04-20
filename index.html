@@ -13,105 +13,135 @@
     }
 
     body {
-      font-family: "PingFang SC", "Microsoft YaHei", Arial;
+      font-family: "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
       color: white;
-      background: #000;
+      background: #0f1020;
     }
 
-    /* ===== 封面 ===== */
+    /* ===== 第一屏：炫彩封面，不用照片 ===== */
     .cover {
       height: 100vh;
-      background: url("photo1.jpg") center/cover no-repeat;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
       position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255, 0, 153, 0.45), transparent 28%),
+        radial-gradient(circle at 85% 18%, rgba(0, 204, 255, 0.38), transparent 30%),
+        radial-gradient(circle at 50% 78%, rgba(123, 97, 255, 0.42), transparent 34%),
+        radial-gradient(circle at 30% 85%, rgba(255, 180, 0, 0.16), transparent 24%),
+        linear-gradient(135deg, #0f1020 0%, #1b1035 45%, #0a1a2f 100%);
     }
 
     .cover::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,0.4);
+      background: rgba(0, 0, 0, 0.18);
     }
 
     .cover-content {
       position: relative;
       z-index: 1;
+      max-width: 980px;
+      padding: 0 24px;
     }
 
     .cover h1 {
-      font-size: 80px;
+      font-size: 88px;
       margin-bottom: 20px;
-      text-shadow: 0 10px 40px rgba(0,0,0,0.8);
+      letter-spacing: 2px;
+      text-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
     }
 
     .cover p {
-      font-size: 22px;
-      max-width: 800px;
-      line-height: 1.8;
+      font-size: 24px;
+      line-height: 1.9;
+      color: rgba(255, 255, 255, 0.96);
+      text-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
     }
 
-    /* ===== 向下箭头 ===== */
     .scroll {
       position: absolute;
       bottom: 30px;
+      z-index: 1;
       font-size: 30px;
       animation: bounce 1.5s infinite;
+      color: rgba(255, 255, 255, 0.92);
     }
 
     @keyframes bounce {
-      0%,100% { transform: translateY(0); }
+      0%, 100% { transform: translateY(0); }
       50% { transform: translateY(10px); }
     }
 
-    /* ===== 主体渐变背景 ===== */
+    /* ===== 下面主体：继续炫彩背景 ===== */
     .main {
-  background:
-    radial-gradient(circle at top left, rgba(255, 0, 153, 0.4), transparent 40%),
-    radial-gradient(circle at top right, rgba(0, 204, 255, 0.35), transparent 40%),
-    radial-gradient(circle at bottom center, rgba(123, 97, 255, 0.4), transparent 45%),
-    linear-gradient(135deg, #0f1020, #1b1035, #0a1a2f);
-    
-  padding: 60px 30px;
-}
+      background:
+        radial-gradient(circle at top left, rgba(255, 0, 153, 0.26), transparent 34%),
+        radial-gradient(circle at top right, rgba(0, 204, 255, 0.24), transparent 34%),
+        radial-gradient(circle at bottom center, rgba(123, 97, 255, 0.28), transparent 38%),
+        linear-gradient(135deg, #0f1020, #1b1035, #0a1a2f);
+      padding: 70px 30px 90px;
+    }
+
+    .section-title {
+      max-width: 1200px;
+      margin: 0 auto 28px;
+      text-align: center;
+    }
+
+    .section-title h2 {
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    .section-title p {
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.82);
+      line-height: 1.8;
     }
 
     /* ===== 照片墙 ===== */
     .gallery {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      gap: 22px;
       max-width: 1200px;
       margin: 0 auto;
     }
 
     .card {
       position: relative;
-      border-radius: 20px;
+      border-radius: 24px;
       overflow: hidden;
       height: 420px;
+      background: rgba(255, 255, 255, 0.06);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
     }
 
     .card img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: 0.4s;
+      display: block;
+      transition: transform 0.45s ease;
     }
 
     .card:hover img {
-      transform: scale(1.1);
+      transform: scale(1.08);
     }
 
     .text {
       position: absolute;
+      left: 0;
+      right: 0;
       bottom: 0;
-      width: 100%;
       padding: 20px;
-      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+      background: linear-gradient(to top, rgba(0,0,0,0.82), rgba(0,0,0,0.08));
     }
 
     .text h3 {
@@ -121,48 +151,73 @@
 
     .text p {
       font-size: 14px;
-      line-height: 1.6;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.92);
     }
 
-    @media(max-width:900px){
-      .gallery{
-        grid-template-columns:1fr 1fr;
+    @media (max-width: 900px) {
+      .gallery {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .cover h1 {
+        font-size: 62px;
+      }
+
+      .cover p {
+        font-size: 20px;
       }
     }
 
-    @media(max-width:600px){
-      .gallery{
-        grid-template-columns:1fr;
+    @media (max-width: 600px) {
+      .gallery {
+        grid-template-columns: 1fr;
       }
-      .cover h1{
-        font-size:50px;
+
+      .cover h1 {
+        font-size: 48px;
+      }
+
+      .cover p {
+        font-size: 17px;
+      }
+
+      .card {
+        height: 360px;
+      }
+
+      .section-title h2 {
+        font-size: 30px;
       }
     }
-
   </style>
 </head>
 
 <body>
 
-  <!-- ===== 封面 ===== -->
+  <!-- ===== 第一屏：炫彩封面 ===== -->
   <section class="cover">
     <div class="cover-content">
       <h1>李馨芮</h1>
       <p>
-        老天爷炫技作品 · 人间颜值外挂 · 氛围感核武器 ·  
+        老天爷炫技作品 · 人间颜值外挂 · 氛围感核武器 ·
         看一眼失眠三天 · 再看一眼开始幻想人生之你芮姐超级哇塞
       </p>
     </div>
     <div class="scroll">↓</div>
   </section>
 
-  <!-- ===== 主体 ===== -->
+  <!-- ===== 第二屏：六张照片展示 ===== -->
   <section class="main">
+    <div class="section-title">
+      <h2>酷炸照片墙</h2>
+      <p>六张图不多不少，刚好装下你芮姐的美貌攻击范围。</p>
+    </div>
 
     <div class="gallery">
 
       <div class="card">
-        <img src="photo1.jpg">
+        <img src="photo1.jpg" alt="photo1">
         <div class="text">
           <h3>老天爷亲自代言</h3>
           <p>超级哇塞滴大女孩 · 各位请乖乖去法国排队</p>
@@ -170,7 +225,7 @@
       </div>
 
       <div class="card">
-        <img src="photo2.jpg">
+        <img src="photo2.jpg" alt="photo2">
         <div class="text">
           <h3>心动暴击制造机</h3>
           <p>看一眼脑子宕机 · 再看一眼直接恋爱脑</p>
@@ -178,7 +233,7 @@
       </div>
 
       <div class="card">
-        <img src="photo3.JPG">
+        <img src="photo3.JPG" alt="photo3">
         <div class="text">
           <h3>午夜传说本体</h3>
           <p>社交场神话 · 出现一次就能吹半年</p>
@@ -186,7 +241,7 @@
       </div>
 
       <div class="card">
-        <img src="photo4.jpg">
+        <img src="photo4.jpg" alt="photo4">
         <div class="text">
           <h3>芳心收割机</h3>
           <p>不是她会撩，是她呼吸都在撩</p>
@@ -194,15 +249,22 @@
       </div>
 
       <div class="card">
-        <img src="photo5.jpg">
+        <img src="photo5.jpg" alt="photo5">
         <div class="text">
           <h3>不讲理美貌</h3>
           <p>颜值外挂开启 · 普通人直接退赛</p>
         </div>
       </div>
 
-    </div>
+      <div class="card">
+        <img src="photo6.JPG" alt="photo6">
+        <div class="text">
+          <h3>压轴大杀器</h3>
+          <p>最后一张继续暴击 · 看完自动宣布你芮姐封神</p>
+        </div>
+      </div>
 
+    </div>
   </section>
 
 </body>
